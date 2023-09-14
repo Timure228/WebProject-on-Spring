@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<div>
+    <h1 class="w3-opacity w3-blue">Update SCP Site</h1>
+    <hr>
+    <h3>Update form</h3>
+    <br>
+    <form action="#" th:action="@{/SaveScp}" th:object="${scp}" method="POST" class="w3-container">
+        <input type="hidden" th:field="*{id}"/>
+
+        <label class="w3-text-blue" style="text-shadow:1px 1px 0 #444">SCP:</label>
+        <input type="text" th:field="*{name}" class="w3-input w3-border">
+        <br>
+        <label class="w3-text-blue" style="text-shadow:1px 1px 0 #444">Type:</label>
+        <input type="text" th:field="*{type}" class="w3-input w3-border">
+        <br>
+        <button type="submit" class="w3-button w3-blue">Update</button>
+    </form>
+    <br>
+    <a th:href="@{/}" class="">return</a>
+</div>
+</body>
+</html>

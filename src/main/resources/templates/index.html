@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+    lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SCP Management System</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<div align="center">
+    <h1 class="w3-red" style="text-shadow:1px 1px 0 #444">Official Objects in Complex nr.34</h1>
+    <table border="1" class="w3-table-all w3-card-4">
+        <thead>
+            <tr>
+                <th>SCP name</th>
+                <th>SCP type</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="scp : ${list}">
+                <td th:text="${scp.name}"></td>
+                <td th:text="${scp.type}"></td>
+                <td><a class="w3-button w3-blue" th:href="@{/showFormForUpdate/{id}(id=${scp.id})}">Update</a>
+                <a class="w3-button w3-red" th:href="@{/deleteScp/{id}(id=${scp.id})}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/AddNewScp}" class="w3-button w3-blue">Add new Scp</a>
+
+    <div th:if="${totalPages > 1}">
+        <div>
+            Total Rows: [[${totalRows}]]
+        </div>
+
+        <div>
+            <span th:each="i: ${#number.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span>
+            </span>
+        </div>
+
+        <div>
+            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
+            <span th:unless="${currentPage < totalPages}}">Next</span>
+        </div>
+
+        <div>
+            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
+            <span th:unless="${currentPage < totalPages}}">Last</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
